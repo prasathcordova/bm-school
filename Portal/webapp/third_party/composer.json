@@ -1,0 +1,4 @@
+{
+    "require": {
+               "mpdf/mpdf": "^7.0"   }  
+}

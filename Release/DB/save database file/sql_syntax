@@ -1,0 +1,41 @@
+sql queries
+
+FIND DATA TYPE IN FIELD
+  EXEC sp_describe_first_result_set N'SELECT * FROM docme_transport.tbl_invoice_service'
+
+ALTER COLUMN DATA TYPE
+  ALTER TABLE [docme_transport].[tbl_invoice_service] ALTER COLUMN sparparts_details varchar(MAX);
+
+ ALTER TABLE docme_transport.tbl_invoice_service ALTER COLUMN DELIVERY_DATE DATE;
+
+DROP TABLE:
+ DROP TABLE docme_transport.tbl_invoice_service;
+
+ALTER TABLE docme_transport.tbl_invoice_service
+DROP COLUMN DELIVERY_DATE;
+
+
+ALTER TABLE [docme_transport].[tbl_invoice_service] ALTER COLUMN sparparts_details varchar(MAX);
+
+GET SELECT DATA NOT IN:
+
+ select * from  dbo.Employee_list em 
+ WHERE (em.Emp_id) NOT IN (select conductor_name from docme_transport.tbl_conductor)
+
+Alter table column field default null
+
+ALTER TABLE docme_transport.tbl_student_daily_travel_data ALTER COLUMN Longtitude varchar(100) null;
+
+ALTER TABLE docme_transport.tbl_vehicle_incidents
+ADD isActive TINYINT NOT NULL DEFAULT(1)
+
+
+
+
+
+
+
+                     )
+
+
+

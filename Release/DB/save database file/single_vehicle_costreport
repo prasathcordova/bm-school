@@ -1,0 +1,321 @@
+<html>
+
+<head>
+
+    <!-- <title style="color:hotpink"><?php echo $title; ?></title> -->
+</head>
+
+
+<body style="background: #fff !important;">
+
+    <?php
+    echo $this->load->view('reports/report_view/header');
+    foreach ($report_data as $rpt_data) {
+        foreach ($rpt_data['sparparts_details'] as $spare) {
+            echo json_encode($spare);
+        }
+    }
+    // echo $report_data[0]['vehicleNum'];
+
+    ?>
+    <br>
+
+    <table border="0" width="25%" cellpadding="2" style="font-size:11px;">
+        <tr class="header">
+            <td align="left">Date From</td>
+            <td align="left">: <?php echo  date("d-m-Y", strtotime($startdate)); ?></td>
+        </tr>
+        <tr>
+            <td align="left">Date To</td>
+            <td align="left">: <?php echo date("d-m-Y", strtotime($enddate)); ?></td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered" width="100%" cellpadding="5">
+
+        <tbody>
+            <?php
+
+            if (isset($report_data) && !empty($report_data)) {
+                $i = 1;
+                $veh_no = '';
+                foreach ($report_data as $key => $rpt_data) { ?>
+                    <tr>
+                        <td colspan="2" style="font-size: 20px">
+
+                            <span>Invoice Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</span> <b><?php echo date('d-m-Y', strtotime($rpt_data['INVOICE_DATE'])) ?></b><br>
+
+                            <?php if ($veh_no != $rpt_data['vehicleNum']) {
+                                $veh_no = $rpt_data['vehicleNum'];
+
+                            ?>
+                                <span>Vehicle Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</span> <b><?php echo $rpt_data['vehicleNum']; ?></b><br>
+                                <span>Fuel Type &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</span> <b><?php echo $rpt_data['fuelTypeName']; ?></b><br>
+                                <?php if (is_null($rpt_data['kmreading'])) { ?>
+                                    <span>Odometer Reading &nbsp; :</span> <b><?php echo 'No details'; ?></b>
+                                <?php   } else { ?>
+                                    <span>Odometer Reading &nbsp; :</span> <b><?php echo $rpt_data['kmreading']; ?></b>
+                                <?php }
+                                ?>
+                            <?php } ?>
+
+                        </td>
+                        <td colspan="2" style="font-size: 20px">
+
+                            <span>Invoice Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</span> <b><?php echo date('d-m-Y', strtotime($rpt_data['INVOICE_DATE'])) ?></b><br>
+
+                            <?php if ($veh_no != $rpt_data['vehicleNum']) {
+                                $veh_no = $rpt_data['vehicleNum'];
+
+                            ?>
+                                <span>Vehicle Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</span> <b><?php echo $rpt_data['vehicleNum']; ?></b><br>
+                                <span>Fuel Type &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</span> <b><?php echo $rpt_data['fuelTypeName']; ?></b><br>
+                                <?php if (is_null($rpt_data['kmreading'])) { ?>
+                                    <span>Odometer Reading &nbsp; :</span> <b><?php echo 'No details'; ?></b>
+                                <?php   } else { ?>
+                                    <span>Odometer Reading &nbsp; :</span> <b><?php echo $rpt_data['kmreading']; ?></b>
+                                <?php }
+                                ?>
+                            <?php } ?>
+
+                        </td>
+
+                    </tr>
+                    <!-- <tr>
+                        <td width="40%">Vehicle Number</td>
+                        <td width="60%"><b class="text-uppercase"><?php echo $rpt_data['vehicleNum']; ?></b></td>
+                    </tr> -->
+                    <tr>
+                        <td width="10%" style="font-size: 20px">Service Center</td>
+                        <td width="60%" style="font-size: 20px"><b class="text-uppercase"><?php echo $rpt_data['ServiceCenter']; ?></b></td>
+                        <td width="10%" style="font-size: 20px">Service Center</td>
+                        <td width="60%" style="font-size: 20px"><b class="text-uppercase"><?php echo $rpt_data['ServiceCenter']; ?></b></td>
+                    </tr>
+                    <tr>
+                        <td width="40%" style="font-size: 20px">Spareparts Details</td>
+                        <td width="60%">
+                            <?php
+                            if (is_null($rpt_data['sparparts_details'])) { ?>
+                                <b><?php echo 'No Details'; ?></b>
+                            <?php    } else {
+                            ?>
+                                <table class="table" width="100%" style="font-size: 20px">
+                                    <thead>
+                                        <tr>
+                                            <th>Spare Part</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $spare_data = json_decode($rpt_data['sparparts_details'], true);
+                                        foreach ($spare_data as $spare) { ?>
+                                            <tr style="padding: 5px">
+                                                <td align="center"><?php echo $spare['sparepart_name']; ?></td>
+                                                <td align="center"><?php echo $spare['sparepart_quantity']; ?></td>
+                                                <td style="text-align: right"><?php echo $spare['sparepart_amount']; ?></td>
+                                            </tr>
+                                        <?php }  ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+                        </td>
+                        <td width="40%" style="font-size: 20px">Spareparts Details</td>
+                        <td width="60%" style="font-size: 20px">
+                            <?php
+                            if (is_null($rpt_data['sparparts_details'])) { ?>
+                                <b><?php echo 'No Details'; ?></b>
+                            <?php    } else {
+                            ?>
+                                <table class="table" width="100%" style="font-size: 20px">
+                                    <thead>
+                                        <tr>
+                                            <th>Spare Part</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $spare_data = json_decode($rpt_data['sparparts_details'], true);
+                                        foreach ($spare_data as $spare) { ?>
+                                            <tr style="padding: 5px">
+                                                <td align="center"><?php echo $spare['sparepart_name']; ?></td>
+                                                <td align="center"><?php echo $spare['sparepart_quantity']; ?></td>
+                                                <td style="text-align: right"><?php echo $spare['sparepart_amount']; ?></td>
+                                            </tr>
+                                        <?php }  ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width='40%' style="font-size: 20px">Acesories Details</td>
+                        <td width='60%' style="font-size: 20px">
+                            <?php
+                            if (is_null($rpt_data['acesories_details'])) { ?>
+                                <b> <?php echo 'No Details'; ?></b>
+                            <?php     } else if (empty($rpt_data['acesories_details'])) { ?>
+                                <b> <?php echo 'No Details'; ?></b>
+                            <?php } else { ?>
+                                <table class="table" width="100%" style="font-size: 20px">
+                                    <thead>
+                                        <tr>
+                                            <th>Acesories Name</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $acesorie_data = json_decode($rpt_data['acesories_details'], true);
+                                        foreach ($acesorie_data as $acesori) { ?>
+                                            <tr>
+                                                <td align="center"><?php echo $acesori['acc_name']; ?></td>
+                                                <td align="center"><?php echo $acesori['acc_quantity']; ?></td>
+                                                <td style="text-align: right"><?php echo $acesori['acc_amount']; ?></td>
+                                            </tr>
+                                        <?php }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+
+                            <b class="text-uppercase">
+                                <!-- <?php echo $invoice_data->sparparts_details ? $invoice_data->sparparts_details : "NIL"; ?>- -->
+                            </b>
+                        </td>
+                        <td width='40%' style="font-size: 20px">Acesories Details</td>
+                        <td width='60%'>
+                            <?php
+                            if (is_null($rpt_data['acesories_details'])) { ?>
+                                <b> <?php echo 'No Details'; ?></b>
+                            <?php     } else if (empty($rpt_data['acesories_details'])) { ?>
+                                <b> <?php echo 'No Details'; ?></b>
+                            <?php } else { ?>
+                                <table class="table" width="100%" style="font-size: 20px">
+                                    <thead>
+                                        <tr>
+                                            <th>Acesories Name</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $acesorie_data = json_decode($rpt_data['acesories_details'], true);
+                                        foreach ($acesorie_data as $acesori) { ?>
+                                            <tr>
+                                                <td align="center"><?php echo $acesori['acc_name']; ?></td>
+                                                <td align="center"><?php echo $acesori['acc_quantity']; ?></td>
+                                                <td style="text-align: right"><?php echo $acesori['acc_amount']; ?></td>
+                                            </tr>
+                                        <?php }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+
+                            <b class="text-uppercase">
+                                <!-- <?php echo $invoice_data->sparparts_details ? $invoice_data->sparparts_details : "NIL"; ?>- -->
+                            </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width='40%' style="font-size: 20px">Miscellaneous Details</td>
+                        <td width='60%' style="font-size: 20px">
+                            <?php
+                            if (is_null($rpt_data['miscellaneous_details'])) { ?>
+                                <b> <?php echo 'No Details'; ?></b>
+                            <?php     } else { ?>
+                                <table class="table" width="100%" style="font-size: 20px">
+                                    <thead>
+                                        <tr>
+                                            <th>Particular Name</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $miscell_data = json_decode($rpt_data['miscellaneous_details'], true);
+                                        foreach ($miscell_data as $miscll) { ?>
+                                            <tr>
+                                                <td align="center"><?php echo $miscll['particular_name']; ?></td>
+                                                <td align="center"><?php echo $miscll['miscellaneous_quantity']; ?></td>
+                                                <td style="text-align: right"><?php echo $miscll['miscellaneous_amount']; ?></td>
+                                            </tr>
+                                        <?php }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+
+                            <b class="text-uppercase">
+                                <!-- <?php echo $invoice_data->sparparts_details ? $invoice_data->sparparts_details : "NIL"; ?>- -->
+                            </b>
+                        </td>
+                        <td width='40%' style="font-size: 20px">Miscellaneous Details</td>
+                        <td width='60%' style="font-size: 20px">
+                            <?php
+                            if (is_null($rpt_data['miscellaneous_details'])) { ?>
+                                <b> <?php echo 'No Details'; ?></b>
+                            <?php     } else { ?>
+                                <table class="table" width="100%" style="font-size: 20px">
+                                    <thead>
+                                        <tr>
+                                            <th>Particular Name</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $miscell_data = json_decode($rpt_data['miscellaneous_details'], true);
+                                        foreach ($miscell_data as $miscll) { ?>
+                                            <tr>
+                                                <td align="center"><?php echo $miscll['particular_name']; ?></td>
+                                                <td align="center"><?php echo $miscll['miscellaneous_quantity']; ?></td>
+                                                <td style="text-align: right"><?php echo $miscll['miscellaneous_amount']; ?></td>
+                                            </tr>
+                                        <?php }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+
+                            <b class="text-uppercase">
+                                <!-- <?php echo $invoice_data->sparparts_details ? $invoice_data->sparparts_details : "NIL"; ?>- -->
+                            </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40%" style="font-size: 20px">Labour Charge</td>
+                        <td width="60%" style="text-align: right;font-size: 20px" class="text-uppercase"><?php echo $rpt_data['labourCharge']; ?></td>
+                        <td width="40%" style="font-size: 20px">Labour Charge</td>
+                        <td width="60%" style="text-align: right;font-size: 20px" class="text-uppercase"><?php echo $rpt_data['labourCharge']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="40%" style="font-size: 20px">Other Charge</td>
+                        <td width="60%" style="text-align: right;font-size: 20px" class="text-uppercase"><?php echo $rpt_data['otherDetails']; ?></td>
+                        <td width="40%" style="font-size: 20px">Other Charge</td>
+                        <td width="60%" style="text-align: right;font-size: 20px" class="text-uppercase"><?php echo $rpt_data['otherDetails']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="40%" style="font-size: 20px">Total Amount</td>
+                        <td width="60%" style="text-align: right;font-size: 20px"><b class="text-uppercase"><?php echo $rpt_data['amountTotal']; ?></b></td>
+                        <td width="40%" style="font-size: 20px">Total Amount</td>
+                        <td width="60%" style="text-align: right;font-size: 20px"><b class="text-uppercase"><?php echo $rpt_data['amountTotal']; ?></b></td>
+                    </tr>
+            <?php
+
+                }
+            } ?>
+        </tbody>
+    </table>
+    <!-- <?php echo json_encode($report_data); ?> -->
+</body>
+
+</html>

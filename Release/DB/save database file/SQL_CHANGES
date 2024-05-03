@@ -1,0 +1,245 @@
+DOCME RIMIS CHANGES: CREATE PROCUDURES
+//MAINTANANCE
+PROCEDURE: ALTER PROCEDURE [docme_transport].[vehicleincident_select]
+
+PROCEDURE: ALTER PROCEDURE [docme_transport].[vehicleincidentsdetails_Save]
+TABLE: [docme_transport].[tbl_vehicle_incidents]
+
+//MAINTANANCE HISTORY
+PROCEDURE: ALTER PROCEDURE [docme_transport].[particularvehicleInvoicehistory_select]
+
+PROCEDURE: ALTER PROCEDURE [docme_transport].[vehicleserviceinvoicedetails_Save] 
+CHANGES : ADD NEW COLUMS AND VALUES
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[vehicleInvoice__select]	
+CHANGES: GET SCHOOL NUMBER
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_maintanance_list]		
+CHANGES: GET maintain list for maintains report
+
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_maintanance_report]			
+CHANGES: GET maintains details report
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_costwise_report]		
+CHANGES: GET costwise details report
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_vehexpenditur_report]			
+CHANGES: GET vehicle expenditure details report
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_vehexpenditur_summary_report]			
+CHANGES: GET vehicle expenditure summary details report
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_incidents_report]			
+CHANGES: GET vehicle INCIDENTS report
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[parts_spare_select]				
+CHANGES: GET spare part date for vehicle invoice
+
+
+table conductor:
+CREATE TABLE [docme_transport].[tbl_conductor](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[conductor_name] [varchar](150) NOT NULL,
+	[mobile_no] [varchar](50) NULL,
+	[password] [varchar](250) NOT NULL,
+	[isActive] [tinyint] NOT NULL,
+	[createdOn] [datetime] NOT NULL,
+	[createdBy] [int] NOT NULL,
+	[modifiedOn] [datetime] NULL,
+	[modifiedBy] [int] NULL
+)
+
+ALTER TABLE docme_transport.tbl_invoice_service ADD invoiceuplodefile varchar(max);
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[conductor_data_select]			
+CHANGES: Get conductor data in conductor table
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[conductor_save]			
+CHANGES: save conductor details
+
+PROCEDURE :  ALTER PROCEDURE [docme_transport].[conductorparticular_select]			
+CHANGES: select particular employee data
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[conductor_update]		
+CHANGES: update conductor data
+
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[select_empdata]	
+CHANGES: get employee data for add conductor
+
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_select_emp_data]
+CHANGES: get employee deatils in selected employee
+
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[parts_spare_select]	
+CHANGES: For check spare parts status
+
+PROCEDURE : ALTER PROCEDURE [Auth].[App_login]	
+CHANGES: For App Login
+
+PROCEDURE : ALTER PROCEDURE [docme_transport].[get_maintain_summary_report]
+Changes: get maintanance summary report
+
+PROCEDURE : ALTER PROCEDURE [dbo].[Rpt_religionwise] 
+Changes: date range set get the class division wise report
+
+SQL CHANGES DATE 25-02-2020 - THUSDAY
+
+API create CREATE TABLE docme_transport.tbl_student_daily_travel_data
+
+CREATE TABLE docme_transport.tbl_student_daily_travel_data (
+  student_daily_travel_id  INT NOT NULL IDENTITY PRIMARY KEY,
+  student_id INT,
+  trip_id INT,
+  pickuppoint_id INT,
+  vehicle_id INT,
+  user_id INT,
+  inst_id INT,
+  travel_type VARCHAR(50),
+  travel_date_time dateTime,
+  [createdOn] [datetime] NOT NULL,
+  [modifiedOn] [datetime] NULL,
+  [modifiedBy] [int] NULL
+)
+
+
+SQL CHANGES DATE 26-02-2020 - WEDNESDAY
+
+procedure : alter procedure [docme_document].[document_save] 	
+changes: document uplode error message changes
+
+procedure : alter procedure [settings].[studentparentdetails_select_profile]
+changes: get guardian details changes
+
+procedure : alter procedure [docme_registration].[edit_parent_details]
+changes: whene update student deatils save guardian details
+
+
+API create CREATE TABLE docme_transport.tbl_student_daily_travel_data
+CREATE TABLE docme_transport.tbl_student_daily_travel_data (
+  student_daily_travel_id  INT NOT NULL IDENTITY PRIMARY KEY,
+  student_id INT,
+  trip_id INT,
+  pickuppoint_id INT,
+  vehicle_id INT,
+  user_id INT,
+  inst_id INT,
+  travel_type VARCHAR(50),
+  travel_date_time dateTime,
+  [createdOn] [datetime] NOT NULL,
+  [modifiedOn] [datetime] NULL,
+  [modifiedBy] [int] NULL
+)
+
+
+SQL CHANGES DATE 27-02-2020 - thursday
+
+Alter table docme_transport.tbl_trip ADD tripCode VARCHAR(150) - DOCME_IN_DEV AND DOCME_IN_LIVE
+
+ALTER PROCEDURE [docme_transport].[trip_select_all_byid] - DOCME_IN_DEV AND DOCME_IN_LIVE
+
+ALTER PROCEDURE [docme_transport].[trip_Save] - DOCME_IN_DEV AND DOCME_IN_LIVE
+
+ALTER PROCEDURE [docme_transport].[trip_update] - DOCME_IN_DEV AND DOCME_IN_LIVE  
+
+
+SQL CHANGES DATE 28-02-2020 - Friday
+
+ALTER PROCEDURE [docme_transport].[get_maintanance_report]
+
+ALTER PROCEDURE [docme_transport].[update_student_daily_status]	
+
+alter table docme_transport.tbl_student_daily_travel_data ADD Latitude,Longtitude VARCHAR(100)
+
+SQL CHANGES DATE 2-03-2020 - Monday
+
+ALTER PROCEDURE [docme_transport].[vehicleincident_select] - DOCME_IN_DEV 
+
+ALTER PROCEDURE [docme_transport].[pickuppoint_select]	- DOCME_IN_DEV 
+
+ALTER PROCEDURE [docme_transport].[trip_select] - DOCME_IN_DEV 
+
+SQL CHANGES DATE 3-03-2020 - thusday
+
+ALTER PROCEDURE [docme_transport].[get_incidents_report] - DOCME_IN_DEV AND DOCME_IN_LIVE 
+
+ALTER PROCEDURE [docme_transport].[spares_save] - DOCME_IN_DEV AND DOCME_IN_LIVE 
+
+SQL CHANGES DATE 4-03-2020 - wednesday
+CREATE TABLE docme_transport.tbl_vehicle_driver_map (
+  vehicle_driver_map_id  INT NOT NULL IDENTITY PRIMARY KEY,
+  inst_id INT,
+  vehicle_id INT,
+  emp_id INT,
+ isactive INT default(1),
+ Start_date VARCHAR(150) NULL,
+ End_date VARCHAR(150) NULL,
+  [createdOn] [datetime] ,
+  [createdBy] INT,
+  [modifiedOn] [datetime] NULL,
+  [modifiedBy] [int] NULL
+)
+
+SQL CHANGES DATE 5-03-2020 - thursday
+
+ALTER PROCEDURE [docme_transport].[get_trip_pickuppoints]
+
+ALTER TABLE docme_transport.tbl_vehicle_incidents Alter column tripId varchar(150) NOT null;
+
+ALTER TABLE docme_transport.tbl_vehicle_incidents Alter column lastPickupFromIncident varchar(150) NOT null;
+
+ALTER PROCEDURE [docme_transport].[vehicleincident_select]
+
+ALTER PROCEDURE [docme_transport].[get_incidents_report]
+
+SELECT @user_id = userid FROM AUTH.rest_keys WHERE api_key = @apikey AND isactive = 1
+	SELECT @inst_id = Inst_id FROM DBO.Employee_list WHERE Emp_id = @user_id
+
+
+SQL CHANGES DATE 6-03-2020 - friday
+
+ALTER PROCEDURE [docme_transport].[driver_save]	
+
+ALTER PROCEDURE [docme_transport].[select_empdata_for_driver]	
+ALTER PROCEDURE [docme_transport].[get_vehicle_data]
+
+ALTER PROCEDURE [docme_transport].[driver_update]  
+
+ALTER[docme_transport].[driver_data_select] 
+
+
+SQL CHANGES DATE 11-03-2020 - wednessday
+
+ALTER PROCEDURE [docme_transport].[driverparticular_select]
+
+ALTER PROCEDURE [docme_transport].[select_empdata_for_driver]
+
+ALTER PROCEDURE [docme_transport].[get_vehicle_data]
+
+ALTER PROCEDURE [docme_transport].[driver_data_select]
+
+ALTER PROCEDURE [docme_transport].[driver_update]  
+
+ALTER PROCEDURE [dbo].[Active_count]
+
+ALTER PROCEDURE [docme_transport].[spares_save] 
+
+
+SQL CHANGES DATE 12-03-2020 - thursday
+
+vehicleserviceinvoicedetails_Save
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !assets
+RewriteCond $1 !^(index\.php|uploads|images|captcha|css|js|template|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /docme-school/Portal/index.php/$1 [L]
+
+# 7 Days
+#<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+#Header set Cache-Control "max-age=604800, public"
+#</FilesMatch>
+
+php_value memory_limit 51200M
+
+
+#order deny, allow
+Allow from all
+Allow from localhost
+
